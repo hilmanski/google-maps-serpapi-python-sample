@@ -20,6 +20,9 @@ SERPAPI_KEY=YOUR_API_KEY
 ```
 - Replace `YOUR_API_KEY` with your real API key from SerpApi.
 
+Run project
+- locate your directory in terminal
+- Run `python main.py`
 
 ## Notes
 For bigger list, it's better to use a "thread/parallelization" method for faster result.
