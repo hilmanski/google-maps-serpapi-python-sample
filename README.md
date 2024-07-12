@@ -2,7 +2,7 @@
 Sample Google Maps API from SerpApi integration in Python. 
 
 ## Case
-Input: list of names + address 
+Input: list of names + address   
 Output: Place details
 
 ## How
