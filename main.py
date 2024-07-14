@@ -40,7 +40,7 @@ def get_value(dictionary, key, default='Not available'):
 ## q = Name + first two sections of address (street number and street name)
 
 for source in sources:
-    query = source['name'] + " " + source['address'].split(",")[0] + " " + source['address'].split(",")[1]
+    query = source['name'] + ", " + source['address'].split(",")[1] + " , " + source['address'].split(",")[1]
     
     result = client.search(
     	q=query,
