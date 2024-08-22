@@ -18,18 +18,11 @@ sources = [
         "name": "NEXUS",
         "address": "1808 Minor Ave, Seattle, WA 98101-1414"
     },
-    {
-        "name": "The Corner House",
-        "address": "102 18th Ave E, Seattle, WA 98112-5216"
-    },
-    {
-        "name": "Green Lake Park",
-        "address": "7201 E Green Lake Dr N, Seattle, WA 98115-5301"
-    },
-    {
-        "name": "Demitri's Gourmet Mixes",
-        "address": "8230 5th Ave S, Seattle, WA 98108-4533"
-    }
+    {"name": "Sur La Table", "address": "6100 4th Ave S, Seattle, WA 98108-3215"},
+    {"name": "Snoqualmie P-Patch Community Gardens", "address": "4549 13th Ave S, Seattle, WA 98108-1808"},
+    {"name": "Arrive Belay & Noba", "address": "6559 15th Ave NW, Seattle, WA 98117-5506"},
+    {"name": "Poke Cafe", "address": "334 NE Northgate Way, Seattle, WA 98125"},
+    {"name": "QFC", "address": "1401 Broadway Ct, Seattle, WA 98122"} 
 ]
 
 # Helper function
@@ -47,14 +40,22 @@ for source in sources:
     	engine="google_maps",
     )
 
-    # Check if no place_results 
-    if 'place_results' not in result:
+    # Handling multiple results
+    if 'local_results' in result:
+        print(f"We found multiple results, fetching the first one")
+        print(f"----------------------------------------------")
+        result = client.search(
+            engine="google_maps",
+            place_id=result['local_results'][0]['place_id']
+        )
+        
+    # Handling no results
+    if 'local_results' not in result and 'place_results' not in result:
         print(f"Name: {source['name']} : Not Found in Google Maps")
         print(f"----------------------------------------------")
         continue
     
     place_result = result['place_results']
-
     # Feel free to adjust the output as needed
     ## Available Key reference: https://serpapi.com/playground?engine=google_maps&q=sea+monster+2202+N+45th+St%2C+Seattle&ll=%4040.7455096%2C-74.0083012%2C14z&hl=en&type=search
     print(f"Name: {get_value(place_result, 'title')}")
